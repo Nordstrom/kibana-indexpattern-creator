@@ -1,0 +1,6 @@
+{
+  "buildSourcePatterns": [
+    "package.json",
+    "index.js"
+  ]
+}
