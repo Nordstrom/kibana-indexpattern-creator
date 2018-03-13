@@ -11,7 +11,7 @@ export default function (kibana) {
                 title: 'Create Index Pattern',
                 description: 'This plugin allow you to create index pattern if it does not exist',
                 main: 'plugins/create_index_pattern/app',
-                icon: 'plugins/create_index_pattern/images/icon.svg'
+                icon: 'plugins/create_index_pattern/icon.svg'
             }
 
         },

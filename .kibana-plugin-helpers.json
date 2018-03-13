@@ -1,6 +1,7 @@
 {
   "buildSourcePatterns": [
     "package.json",
-    "index.js"
+    "index.js",
+    "{lib,public,server,webpackShims}/**/*"
   ]
 }

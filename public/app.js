@@ -5,7 +5,7 @@ import  _ from "lodash";
 
 
 import 'ui/autoload/styles';
-import './less/main.less';
+//import './less/main.less';
 import {CreateIndexPatternService} from './create-index-pattern-service'
 import template from './templates/index.html';
 uiRoutes.enable();
@@ -35,18 +35,23 @@ uiModules
         }
 
         $scope.init = function () {
+            var baseurl = $location.$$absUrl.split('/app')[0]
             $scope.target = ($location.search()).target;
-            var request = {'timeFieldName': '@timestamp', 'title': $scope.target};
-            $http.post('../api/getIndexPattern', request).then((response) => {
-              $scope.found = response.data.found;
-              if($scope.found){
-                $scope.message = 'already exists'
-                $scope.createmessage = 'to view'
-              }else{
-                $scope.message = 'does not exist'
-                $scope.createmessage = 'to create one'
-              }
-           });
+            if(typeof $scope.target === 'undefined') {
+              window.location.href=baseurl + "/app/kibana#/management"
+            }else{
+             var request = {'timeFieldName': '@timestamp', 'title': $scope.target};
+             $http.post('../api/getIndexPattern', request).then((response) => {
+               $scope.found = response.data.found;
+               if($scope.found){
+                 $scope.message = 'already exists'
+                 $scope.createmessage = 'to view'
+               }else{
+                 $scope.message = 'does not exist'
+                 $scope.createmessage = 'to create one'
+               }
+            });
+           }
         }
 
     $scope.createPattern = function () {
